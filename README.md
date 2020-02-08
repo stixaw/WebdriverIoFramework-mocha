@@ -88,10 +88,16 @@ if(process.env.SERVER === 'prod'){
 }
 ```
 ### Usage:
-define environment:
-```SERVER=prod npm test``
+*define environment:*
+```SERVER=prod npm test```
 
 *npm test will default to webdriveruniversity.com*
+
+### Logging during runtime
+from within your project and command line:
+``` npm test -- --logLevel=verbose```
+
+this will have logging output to the bash/terminal window
 
 
 
