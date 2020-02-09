@@ -1,10 +1,10 @@
-let baseUrl;
+var baseUrl;
 
-if(process.env.SERVER === 'prod'){
-    baseUrl = 'https://www.google.com';
-} else {
-    baseUrl = 'http://www.webdriveruniversity.com';
-}
+if(process.env.SERVER === 'prod') {
+	baseUrl = 'https://www.google.com';
+	} else {
+		baseUrl= "http://www.webdriveruniversity.com";
+	}
 
 exports.config = {
     
@@ -18,11 +18,11 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './tests/**/*.spec.js'
+        './tests/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
-        './tests/**/chai.spec.js'
+        // 'path/to/excluded/files'
     ],
     //
     // ============
@@ -40,7 +40,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 1,
+    maxInstances: 10,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -50,7 +50,7 @@ exports.config = {
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
-        maxInstances: 1,
+        maxInstances: 5,
         //
         browserName: 'chrome'
     }],
@@ -119,7 +119,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['selenium-standalone'],
+     services: ['selenium-standalone'],
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: http://webdriver.io/guide/testrunner/frameworks.html
@@ -168,10 +168,10 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that are to be run
      */
-    before: function (capabilities, specs) {
-        expect = require('chai').expect;
-        should = require('chai').should();
-    },
+     before: function (capabilities, specs) {
+         expect = require('chai').expect;
+         should = require('chai').should();
+     },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name
