@@ -150,3 +150,86 @@ describe("Checkint equality", () => {
 ```
 
 ### Centralizing Assertions using wdio.conf
+
+```
+    before: function (capabilities, specs) {
+        expect = require('chai').expect;
+        should = require('chai').should();
+    },
+```
+adding this to wdio in the before function allows all tests spec files to use the exect/should
+
+### Wdio time out override in tests:
+in wdio file:
+```
+    // Default timeout for all waitFor* commands.
+    waitforTimeout: 10000,
+```
+in test the overrid:
+
+``` this .timeout(20000); ```
+
+## Pause Command:
+this is a fixed timeout or explicit wait
+
+``` browser.pause(milliseconds) ```
+
+#### browser.pause is not best practise
+should use when pausible or implicit:
+``` browser.waitUnil(() => element.isVisible(), milliseconds); ```
+
+## Debug mode for teets:
+using:
+``` browser.debug() ```
+
+To enable debug mode:
+
+edit wdio.conf file to extend the waitFor Timeout:
+add environmental variable
+```
+let timeout = process.env.DEBUG ? 999999 : 10000;
+```
+
+this allows us to extend the time out when using the npm command:
+``` 
+DEBUG=true npm test -- --spec=webdriverUniversityTest.spec.js
+```
+when the test hits the browser.debug():
+
+```
+.
+[21:03:33]  DEBUG       Queue has stopped!
+[21:03:33]  DEBUG       You can now go into the browser or use the command line as REPL
+[21:03:33]  DEBUG       (To exit, press ^C again or type .exit)
+
+>
+
+End selenium sessions properly ...
+(press ctrl+c again to hard kill the runner)
+```
+
+## Selectors
+
+Can use these tools in Chrome to help selector selection:
+* Ranorex selocity
+* POM Builder
+* Selenium IDE
+* ChroPath
+
+## Target Specific Tests (Exclusive Tests)
+
+The use of .only with describes or it will run only that Describe set of tests or that singular test.
+
+```
+describe.only("exclusive exectution this set of tests", () => {});
+
+it.only("exclusive exectuion of this test", () => {})
+```
+
+## Skipping specific Tests
+```
+describe.skip("exclusive exectution this set of tests", () => {});
+
+it.skip("exclusive exectuion of this test", () => {})
+```
+

@@ -17,6 +17,7 @@ describe("Webdriver University Home page", () => {
             });
 
             it("should go to contact us page", () => {
+                // browser.debug();  (enable to use debug mode)
                 browser.click('#contact-us');
                 browser.pause(1000);
                 title = browser.getTitle();
