@@ -37,7 +37,7 @@ From within project directory using VSCode terminal or MAC terminal (gitbash is 
 * mocha framework
 * install framwork adapter Yes
 * testlocation: ./tests/**/*.js
-* dot reporter
+* dot reporter is default, spec and allure are popular
 * selenium-standalone service
 * level of logging silent
 * screenshots use default
@@ -233,3 +233,27 @@ describe.skip("exclusive exectution this set of tests", () => {});
 it.skip("exclusive exectuion of this test", () => {})
 ```
 
+### Note on package.json:
+to have spec reporters for webdriver:
+* "@wdio/allure-reporter": "^5.7.11",
+* "@wdio/reporter": "^5.7.8",
+* "@wdio/spec-reporter": "^5.7.13",
+
+#### usage in wdio.conf:
+  reporters: [
+    "spec",
+    [
+      "allure",
+      {
+        outputDir: "./results/allure-results"
+      }
+    ]
+  ],
+  
+### rimraf
+ packag.json:
+    * "rimraf": "^3.0.0",
+
+#### usage in npm scripts in package.json:
+* "clean:reports": "rimraf ./results/allure-results && rimraf ./results/*.png",
+* "test:local": "npm run clean:reports && node getSecrets && wdio wdio.LocalChromeconf.js",
