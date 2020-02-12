@@ -257,3 +257,20 @@ to have spec reporters for webdriver:
 #### usage in npm scripts in package.json:
 * "clean:reports": "rimraf ./results/allure-results && rimraf ./results/*.png",
 * "test:local": "npm run clean:reports && node getSecrets && wdio wdio.LocalChromeconf.js",
+
+## Jenkins File for Headless Selenium:
+```
+def seleniumHeadless(environment_name, website_urls, brand_names) {
+  stage("Selenium Tests: ${environment_name} ${brand_names}") {
+    sh 'rm -rf webdriverio-test/results/allure-results'
+    dir ('webdriverio-test') {
+      def salesforce_url = getSalesforceURL(environment_name)
+      for (brand in brand_names) {
+        if (brand != "foundation" && brand != "gmedical") {
+          sh "TEST_ENV=\"${environment_name}\" BASEURL=\"${website_urls[brand]}\" SALESFORCE_URL=\"${salesforce_url}\" npm run test:${brand}:localfeature"
+        }
+      }
+    }
+  }
+}
+```
