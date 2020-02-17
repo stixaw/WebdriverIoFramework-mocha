@@ -274,3 +274,8 @@ def seleniumHeadless(environment_name, website_urls, brand_names) {
   }
 }
 ```
+## GetCssProperty Command:
+``` browser.getCssProperty(selector,cssProperty); ```
+
+Using broswer.get we can access the css properties of any element on the web page.
+
