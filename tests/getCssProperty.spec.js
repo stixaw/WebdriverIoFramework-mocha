@@ -8,14 +8,15 @@ describe("webdriver university home page css elements", () => {
         });
 
         it("should have width of ", () => {
-            const videoPanelWidth = browser.getCssProperty("#player", "width")
-            expect(videoPanelWidth).to.be(50)
+            const videoPanelWidth = browser.getCssProperty("#udemy-promo-thumbnail", "width");
+            expect(videoPanelWidth.value).to.equal('910px');
         });
 
-        it("should have heigth of ", () => {
-            const videoPanelWidth = browser.getCssProperty("#player", "height")
-            expect(videoPanelWidth).to.be(50)
+        it("should have height of ", () => {
+            const videoPanelHeight = browser.getCssProperty("#udemy-promo-thumbnail", "height");
+            expect(videoPanelHeight.value).to.equal('240px');
         });
 
     });
 });
+
