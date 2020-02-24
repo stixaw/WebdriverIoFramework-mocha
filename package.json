@@ -4,7 +4,8 @@
   "description": "WeddriverIO Framework",
   "main": "index.js",
   "scripts": {
-    "test": "wdio"
+    "clean": "rimraf ./errorShots/*",
+    "test": "npm run clean && wdio"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,9 @@
     "selenium-standalone": "^6.15.3",
     "wdio-mocha-framework": "^0.6.4",
     "wdio-selenium-standalone-service": "0.0.12",
-    "webdriverio": "^4.13.2"
+    "webdriverio": "^4.13.2",
+    "rimraf": "^3.0.2"
+  },
+  "dependencies": {
   }
 }

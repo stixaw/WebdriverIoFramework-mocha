@@ -279,3 +279,11 @@ def seleniumHeadless(environment_name, website_urls, brand_names) {
 
 Using broswer.get we can access the css properties of any element on the web page.
 
+## Mocha Hooks
+
+before()
+after()
+beforeEach()
+afterEach()
+
+used to setup precondistions and clean up after tests.
