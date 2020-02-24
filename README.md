@@ -281,9 +281,17 @@ Using broswer.get we can access the css properties of any element on the web pag
 
 ## Mocha Hooks
 
-before()
-after()
-beforeEach()
-afterEach()
+* before()
+* after()
+* beforeEach()
+* afterEach()
 
 used to setup precondistions and clean up after tests.
+
+## Handling Browser Tabs:
+
+* getTabIds()  get all open tabs
+* getCurrentTabId()  gets current tabId you are on
+* switchTab()  switches to a tab
+
+## Verify Elements

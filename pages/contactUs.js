@@ -1,24 +1,34 @@
 
-getFirstNameInput(){
+firstNameInput() {
     return $('[name="first_name"]');
 };
 
-getLastNameInput(){
+lastNameInput(){
     return $('[name="last_name"]');
 };
 
-getEmailInput(){
+emailInput(){
     return $('[name="email"]');
 };
 
-getMessageInput(){
+messageInput(){
     return $('[name="message"]');
 };
 
-getSubmitButton(){
+submitButton(){
     return $("input[type='submit']");
 };
 
 
+inputForm(firstName, lastName, email, message){
+    firstNameInput().setValue(firstName);
+    lastNameInput().setValue(lastName);
+    emailInput().setValue(email);
+    messageInput().setValue(message);
+}
+
+submitForm(){
+    submitButton().click();
+}
 
 
