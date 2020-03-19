@@ -3,6 +3,9 @@ require('it-each')({ testPerIteration: true });
 describe("WebdriverUniversity isVisibleWithinViewport tests", () => {
     before(() => {
         browser.url("/");
+
+        const windowSize = browser.windowHandleSize();
+        console.log(windowSize.value);
     });
 
     it("Contact us container should be Visible in the viewport", () => {
