@@ -295,3 +295,34 @@ used to setup precondistions and clean up after tests.
 * switchTab()  switches to a tab
 
 ## Verify Elements
+
+* isExisting: Returns true if at least one element is existing by given selector
+  usage: browser.isExisting("selector")
+         $("selector").isExisting()
+
+* isVisible: Return true if the selected DOM-element found by given selector is visible.
+  usage: browser.isVisible("selector")
+         $("element").isVisible()
+
+* hasFocus: Return true or false if the selected DOM-element currently has focus.
+  usage: browser.hasFocus("selector")
+         $("element").hasFocus()
+
+* isEnabled: Return true or false if the selected DOM-element found by given selector is enabled.
+  usage: browser.isEnabled("selector");
+         $("selector").isEnabled();
+
+* isSelected: The given selector will return true or false whether or not an <option> or <input> element of type checkbox or radio is currently
+              selected.
+  usage: browser.isSelected("selector");
+         $("selector").isSelected();
+
+* isVisibleWithinViewport: Return true if the selected DOM-element found by given selector is visible and within the viewport.
+  usage: browser.isVisibleWithinViewport("selector");
+         $("selector").isVisibleWithinViewport();
+
+## Actions
+
+* click: Click on an element based on the given selector (unless the element is covered up).
+  usage: browser.click("selector");
+         $("element).click();
