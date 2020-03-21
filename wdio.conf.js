@@ -6,7 +6,7 @@ if(process.env.SERVER === 'prod'){
     baseUrl = 'http://www.webdriveruniversity.com';
 }
 
-let timeout = process.env.DEBUG ? 999999 : 10000;
+let timeout = process.env.DEBUG ? 999999 : 30000;
 
 exports.config = {
     
@@ -90,7 +90,7 @@ exports.config = {
     baseUrl: baseUrl,
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 30000,
     //
     // Default timeout in milliseconds for request
     // if Selenium Grid doesn't send response

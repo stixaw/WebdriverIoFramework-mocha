@@ -1,22 +1,31 @@
+const request = require('sync-request');
+
 const url = "http://www.webdriveruniversity.com/Contact-Us/contactus.html"
 
 describe("Test ContactUs Form", () => {
     describe("Successfull Submission", () => {
+        let contactDetail;
+        const res = request('GET', 'http://jsonplaceholder.typicode.com/posts/1/comments');
+        const contactusDetails = JSON.parse(res.getBody().toString('utf8'));
+        
         before(() => {
             browser.url(url);
             browser.waitUntil(() => $("#contact_form").isVisible(), 5000);
-
-            $('[name="email"]').setValue("test@pc.com");
-            $('[name="first_name"]').setValue("test");
-            $('[name="last_name"]').setValue("tester");
-            $('[name="message"]').setValue("Message Input");
         })
-        it("should be successful when all fields are provided", () => {
-            const submitButton = $("input[type='submit']")
-            submitButton.click();
-            browser.waitUntil(() => $("h1").isVisible, 5000);
-            let newUrl = browser.getUrl();
-            expect(newUrl).to.contain("contact-form-thank-you.html");
+
+        contactusDetails.forEach((contactDetail) => {
+            it("should be successful when all fields are provided", () => {
+                $('[name="email"]').setValue(contactDetail.email);
+                $('[name="first_name"]').setValue("test");
+                $('[name="last_name"]').setValue("tester");
+                $('[name="message"]').setValue(contactDetail.body);
+
+                const submitButton = $("input[type='submit']")
+                submitButton.click();
+                browser.waitUntil(() => $("h1").isVisible, 5000);
+
+                expect($("#contact_reply h1").getText()).to.equal("Thank You for your Message!")
+            });
         });
     });
 

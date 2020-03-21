@@ -323,6 +323,32 @@ used to setup precondistions and clean up after tests.
 
 ## Actions
 
-* click: Click on an element based on the given selector (unless the element is covered up).
+* click(): Click on an element based on the given selector (unless the element is covered up).
   usage: browser.click("selector");
          $("element).click();
+
+* getText(): Get the text content from a DOM-element found by given selector
+  usage: browser.getText()
+         $('element').getText()
+
+* waitForText(): Wait for an element (selected by css selector) for the provided amount of milliseconds to have text/content.
+  usage: browser.waitForText('#elem', 3000)
+
+* waitForVisible: Wait for an element (selected by css selector) for the provided amount of milliseconds to be (in)visible.
+  usage: browser.waitForVisible("selector");
+         $('selector').waitForVisible();
+
+* waitUntil: This wait command is your universal weapon if you want to wait on something. It expects a condition and waits until that condition is fulfilled with a truthy value.
+  usage: browser.waitUntil(condition[,timeout][,timeoutMsg][,interval]);
+
+* waitForValue: Wait for an element (selected by css selector) for the provided amount of milliseconds to have a value.
+  usage: browser.waitForValue(selector[,ms][,reverse]);
+
+### Using External Data
+
+Rather manually adding data to use for inputs
+
+npm sync-request
+Use jason in endpoint to feed tests.
+###### N.B. You should not be using this in a production application. In a node.js application you will find that you are completely unable to scale your server. In a client application you will find that sync-request causes the app to hang/freeze. Synchronous web requests are the number one cause of browser crashes.
+
