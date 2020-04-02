@@ -15,6 +15,7 @@
     "mocha": "^5.2.0",
     "rimraf": "^3.0.2",
     "selenium-standalone": "^6.15.3",
+    "sync-request": "^6.1.0",
     "wdio-mocha-framework": "^0.6.4",
     "wdio-selenium-standalone-service": "0.0.12",
     "wdio-spec-reporter": "^0.1.5",

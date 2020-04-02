@@ -350,5 +350,29 @@ Rather manually adding data to use for inputs
 
 npm sync-request
 Use jason in endpoint to feed tests.
+
 ###### N.B. You should not be using this in a production application. In a node.js application you will find that you are completely unable to scale your server. In a client application you will find that sync-request causes the app to hang/freeze. Synchronous web requests are the number one cause of browser crashes.
+
+### ADDCOMMAND
+If you want to extend the browser instance with your own set of commands there is a method called addCommand available from the browser object. You can write your command in a synchronous (default) way the same way as in your specs.
+Custom commands give you the opportunity to bundle a specific sequence of commands that are used frequently in a handy single command call. You can define custom commands at any point in your test suite, just make sure that the command is defined before you first use it (the before hook in your wdio.conf.js might be a good point to create them). Also to note: custom commands, like all WebdriverIO commmands, can only be called inside a test hook or it block. 
+
+#### Example:
+```browser.addCommand("getUrlAndTitle", function (customVar) {
+    return {
+        url: this.getUrl(),
+        title: this.getTitle(),
+        customVar: customVar
+    };
+});```
+
+Usage:
+```it('should use my custom command', function () {
+    browser.url('http://www.github.com');
+    var result = browser.getUrlAndTitle('foobar');
+
+    assert.strictEqual(result.url, 'https://github.com/');
+    assert.strictEqual(result.title, 'GitHub · Where software is built');
+    assert.strictEqual(result.customVar, 'foobar');
+});```
 
