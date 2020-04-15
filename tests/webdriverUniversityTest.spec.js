@@ -3,7 +3,7 @@ require('it-each')({ testPerIteration: true });
 
 describe("Webdriver University Home page", () => {
     describe("Links", () => {
-        let url, title;
+        let url;
 
         describe("When contact us link is selected", () => {
             before(() => {

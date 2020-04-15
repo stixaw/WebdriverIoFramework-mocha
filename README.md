@@ -358,21 +358,51 @@ If you want to extend the browser instance with your own set of commands there i
 Custom commands give you the opportunity to bundle a specific sequence of commands that are used frequently in a handy single command call. You can define custom commands at any point in your test suite, just make sure that the command is defined before you first use it (the before hook in your wdio.conf.js might be a good point to create them). Also to note: custom commands, like all WebdriverIO commmands, can only be called inside a test hook or it block. 
 
 #### Example:
-```browser.addCommand("getUrlAndTitle", function (customVar) {
+```
+browser.addCommand("getUrlAndTitle", function (customVar) {
     return {
         url: this.getUrl(),
         title: this.getTitle(),
         customVar: customVar
     };
-});```
+});
+```
 
-Usage:
-```it('should use my custom command', function () {
+#### Usage:
+```
+it('should use my custom command', function () {
     browser.url('http://www.github.com');
     var result = browser.getUrlAndTitle('foobar');
 
     assert.strictEqual(result.url, 'https://github.com/');
     assert.strictEqual(result.title, 'GitHub · Where software is built');
     assert.strictEqual(result.customVar, 'foobar');
-});```
+});
+```
+
+### Injecting Javascript Code
+#### Execute Command
+Inject a snippet of JavaScript into the page for execution in the context of the currently selected frame. The executed script is assumed to be synchronous and the result of evaluating the script is returned to the client.
+
+The script argument defines the script to execute in the form of a function body. The value returned by that function will be returned to the client. The function will be invoked with the provided args array and the values may be accessed via the arguments object in the order specified.
+
+Arguments may be any JSON-primitive, array, or JSON object. JSON objects that define a WebElement reference will be converted to the corresponding DOM element. Likewise, any WebElements in the script result will be returned to the client as WebElement JSON objects.
+#### Usage
+```browser.execute(script[,argument1,...,argumentN]);```
+
+##### Example
+execute.js
+```
+videoWidth = browser.execute(() => {
+    video = document.querySelector('#video1');
+    return video.style.width = "300px";
+})
+const newWidth = browser.getCssProperty("#video1", "width");
+expect(newWidth.value).to.equal("300px")
+```
+
+### Page Object Model (POM)
+
+Design pattern used to construct object repositories for the given web page(s).
+
 
